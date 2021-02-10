@@ -90,7 +90,7 @@ class App extends Component {
       .then(res => this.setState({ apiResponse: res }));
   }
 
-  setSelected = e => {
+  setSelected(e) {
     this.setState({
       selected: e.target.value
     });
@@ -114,7 +114,7 @@ class App extends Component {
         <Route path="/dropdown">
           <Dropdown
             label="Select a Color"
-            // onSelectedChange={setSelected}
+            onSelectedChange={this.state.setSelected}
             selected={this.state.selected}
             options={options}
           />

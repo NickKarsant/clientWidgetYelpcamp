@@ -26,10 +26,12 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
       return null;
     }
 
+    
+
     return (
       <div
         key={option.value}
-        onClick={() => onSelectedChange(option)}
+        onClick={onSelectedChange(option)}
         className="item"
       >
         {option.label}
