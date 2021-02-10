@@ -81,14 +81,20 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
+    this.state = { apiResponse: "", selected: options[0] };
   }
 
   callAPI() {
-    fetch("http://localhost:9000/testAPI")
+    fetch("http://localhost:9000/yelpcamp")
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }
+
+  setSelected = e => {
+    this.setState({
+      selected: e.target.value
+    });
+  };
 
   componentWillMount() {
     this.callAPI();
@@ -96,8 +102,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
-
         <Header />
         <Route path="/">
           <Accordion items={items} />
@@ -108,12 +112,12 @@ class App extends Component {
         </Route>
 
         <Route path="/dropdown">
-          {/* <Dropdown
+          <Dropdown
             label="Select a Color"
-            onSelectedChange={setSelected}
-            selected={selected}
+            // onSelectedChange={setSelected}
+            selected={this.state.selected}
             options={options}
-          /> */}
+          />
         </Route>
 
         <Route path="/translate">
@@ -124,7 +128,9 @@ class App extends Component {
           <VideoApp />
         </Route>
 
-        <p>{this.state.apiResponse}</p>
+        <Route path="/yelpcamp">
+          <p>{this.state.apiResponse}</p>
+        </Route>
       </div>
     );
   }
